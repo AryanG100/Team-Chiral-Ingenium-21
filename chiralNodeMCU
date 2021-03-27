@@ -1,0 +1,118 @@
+#include <SoftwareSerial.h>
+SoftwareSerial s(14,12);
+#include <ArduinoJson.h>
+#include <FirebaseESP8266.h>
+#include <FirebaseESP8266HTTPClient.h>
+#include <FirebaseFS.h>
+#include <FirebaseJson.h>
+#include <ESP8266WiFi.h>
+
+#define FIREBASE_HOST "chiral-spoon-default-rtdb.firebaseio.com/"
+#define FIREBASE_AUTH "e5i5FqHwe7toUODLcPPE2hU1nHVFxOsLHaqdoUew"
+#define WIFI_SSID "Chirag's iPhone"
+#define WIFI_PASSWORD "password1"
+
+FirebaseData firebaseData;
+FirebaseData ledData;
+FirebaseJson tms, data1, data2;
+ 
+void setup() {
+  // Initialize Serial port
+  Serial.begin(9600);
+  s.begin(4800);
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to Wi-Fi");
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.print(".");
+    delay(300);
+  }
+  Serial.println();
+  Serial.print("Connected with IP: ");
+  Serial.println(WiFi.localIP());
+  Serial.println();
+
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  Firebase.reconnectWiFi(true);
+  while (!Serial) continue;
+ }
+ 
+void loop() {
+  const size_t capacity = JSON_OBJECT_SIZE(2) + 20; 
+  DynamicJsonDocument doc(capacity);
+  DeserializationError error = deserializeJson(doc, s);
+  if (error) {
+  Serial.print(F("deserializeJson() failed: "));
+  Serial.println(error.c_str());
+  return;
+  }
+  Serial.println("JSON received and parsed");
+  serializeJsonPretty(doc,Serial);
+  Serial.print("roll");
+  Serial.println("");
+  int roll=doc["roll"];
+  Serial.print(roll);
+  Serial.print("   pitch ");
+  int pitch=doc["pitch"];
+  Serial.print(pitch);
+  Serial.println("");
+  Serial.println("---------------------xxxxx--------------------");
+  if(roll > 180){
+    roll = 180;
+    }
+  else if(roll < -180){
+    roll = -180;
+    }
+  else if(roll == 0){
+    return;
+    }
+    if(pitch > 180){
+    pitch = 180;
+    }
+  else if(pitch < -180){
+    pitch = -180;
+    }
+  else if(pitch == 0){
+    return;
+    }
+  
+  data1.set("angle",roll);
+  if (Firebase.pushJSON(firebaseData, "/Roll", data1))
+  {
+    Serial.println("PASSED");
+    Serial.println("PATH: " + firebaseData.dataPath());
+    Serial.println("PUSH NAME: " + firebaseData.pushName());
+    Serial.println("ETag: " + firebaseData.ETag());
+    Serial.println("------------------------------------");
+    Serial.println();
+  }
+  else
+  {
+    Serial.println("FAILED");
+    Serial.println("REASON: " + firebaseData.errorReason());
+    Serial.println("------------------------------------");
+    Serial.println();
+  }
+
+
+  data2.set("angle",pitch);
+  if (Firebase.pushJSON(firebaseData, "/Pitch", data2))
+  {
+    Serial.println("PASSED");
+    Serial.println("PATH: " + firebaseData.dataPath());
+    Serial.println("PUSH NAME: " + firebaseData.pushName());
+    Serial.println("ETag: " + firebaseData.ETag());
+    Serial.println("------------------------------------");
+    Serial.println();
+  }
+  else
+  {
+    Serial.println("FAILED");
+    Serial.println("REASON: " + firebaseData.errorReason());
+    Serial.println("------------------------------------");
+    Serial.println();
+  }
+  data1.iteratorEnd();
+  data2.iteratorEnd();
+ delay(200);
+}

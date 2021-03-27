@@ -1,0 +1,65 @@
+#include <Servo.h>
+#include <SoftwareSerial.h>
+#include <Wire.h>
+#include <MPU6050_tockn.h>
+#include <ArduinoJson.h>
+Servo ser;
+Servo ser1;
+int s2 = 7;
+int s2a;
+MPU6050 mpu6050(Wire);
+SoftwareSerial s(5, 6);
+int a = 3;
+String str;
+void setup() {
+  Serial.begin(4800);
+  s.begin(4800);
+  Wire.begin();
+  mpu6050.begin();
+  mpu6050.calcGyroOffsets(true);
+ 
+ 
+    ser.attach(a);
+  ser.write(90);
+    ser1.attach(s2);
+  ser1.write(90);
+  delay(100);
+  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  mpu6050.update();
+ int b = mpu6050.getAngleY();
+ int c = mpu6050.getAngleX();
+  ser1.write(90 + (b));
+  ser.write(90 + (c));
+  if(b > 180){
+    b = 180;
+    }
+  else if(b < -180){
+    b = -180;
+    }
+  else if(b == 0){
+    return;
+    }
+    if(c > 180){
+    b = 180;
+    }
+  else if(c < -180){
+    b = -180;
+    }
+  else if(c == 0){
+    return;
+    }
+ StaticJsonDocument<100> doc;
+   JsonObject root = doc.to<JsonObject>();
+   root["roll"] = b;
+   root["pitch"] = c;
+   serializeJson(doc,s);
+ str = String(b) + String(",") + String(c);
+  Serial.println(str);
+  
+
+}
