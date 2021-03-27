@@ -1,4 +1,4 @@
-# Team-Chiral_Bitbox
+# Team-Chiral_Ingenium'21
 
 
 Parkinson’s disease is a neurological degenerative disease that results in irrepressible shivers in the limbs. Due to unintended tremors in their arms, patients are unable to perform everyday menial tasks like eating food out of a bowl.
