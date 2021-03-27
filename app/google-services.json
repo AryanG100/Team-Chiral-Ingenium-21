@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "267782842807",
+    "firebase_url": "https://chiral-spoon-default-rtdb.firebaseio.com",
+    "project_id": "chiral-spoon",
+    "storage_bucket": "chiral-spoon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267782842807:android:01579085d9576528996032",
+        "android_client_info": {
+          "package_name": "com.hingorani.chiral"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267782842807-q3fh45n18nofmls66j3slv4dmjtpksrm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3B5sn1Oza0g9Hb4pSbhtn-CGLquEa__I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267782842807-q3fh45n18nofmls66j3slv4dmjtpksrm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

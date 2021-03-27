@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg2"
+    tools:context=".stats">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"></ImageView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.1"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:layout_margin="5dp"
+                android:src="@drawable/user"
+                android:foreground="@drawable/border"></ImageView>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="14"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/nameText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textAlignment="viewStart"
+                    android:layout_marginLeft="10dp"
+                    android:text="Name: Vishal Hingorani"
+                    android:layout_weight="1"
+                    tools:ignore="RtlCompat"></TextView>
+                <TextView
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textAlignment="viewStart"
+                    android:layout_marginLeft="10dp"
+                    android:text="Age: 17"
+                    android:layout_weight="1"
+                    tools:ignore="RtlCompat"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:textAlignment="viewStart"
+                        tools:ignore="RtlCompat"
+                        android:layout_marginLeft="10dp"
+                        android:text="Gender: M"
+                        android:layout_weight="1"
+></TextView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/history"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:textAlignment="viewStart"
+                        tools:ignore="RtlCompat"
+                        android:layout_marginLeft="10dp"
+                        android:text="History of PD: 7 years"
+                        android:layout_weight="1"></TextView>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/severity"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:textAlignment="viewStart"
+                        tools:ignore="RtlCompat"
+                        android:layout_marginLeft="10dp"
+                        android:text="Severity: Medium"
+                        android:layout_weight="1"></TextView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/lastConsulted"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textAlignment="viewStart"
+                        tools:ignore="RtlCompat"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="Last Consulted: 22/03/21"
+                        android:layout_weight="1"></TextView>
+                </LinearLayout>
+            </LinearLayout>
+"
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="Tremor Statistics"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_margin="10dp"></TextView>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="200dp"></com.github.mikephil.charting.charts.LineChart>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/graphPitch"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="200dp"></com.github.mikephil.charting.charts.LineChart>
+
+
+</LinearLayout>
